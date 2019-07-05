@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin
 public class PersonController {
 
     @Autowired
@@ -37,7 +38,7 @@ public class PersonController {
         return personService.savePerson(person);
     }
 
-    @PutMapping("/person/")
+    @PutMapping("/person")
     public void updatePerson(@RequestBody Person person){
         personService.updatePerson(person);
     }

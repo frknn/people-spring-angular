@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="row">
+    <div class="col sm-4">
+      <p> </p>
+    </div>
+    <div class="col-sm-4">
+      <form class="formclass" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <p>
+            First Name
+          </p>
+          <input class="form-control" type="text" formControlName="firstName">
+        </div>
+        <div class="form-group">
+          <p>
+            Last Name
+          </p>
+          <input class="form-control" type="text" formControlName="lastName">
+        </div>
+        <p> </p>
+        <button class="btn btn-success" type="submit" [disabled]="!profileForm.valid">Submit</button>
+
+      </form>
+    </div>
+    <div class="col-sm-4">
+      <p> </p>
+    </div>
+
+  </div>
+
+  <div style="margin: 10px;" class="row">
+    <div class="col-sm-4">
+      <p></p>
+    </div>
+    <div class="col-sm-4">
+      <h2 style="text-align: center; margin-top:25px">People</h2>
+      <ul class="list-group">
+        <div *ngFor="let person of persons">
+          <li class="list-group-item">
+            <div style="text-align: center">
+              <button id="{{person.id}}" style="border: none; background:none;" (click)="updateFields(person)">
+                {{person.name}}
+              </button>
+              <p></p>
+              <button class="btn btn-primary" id="btn {{person.id}}" (click)="getSurname(person.id)">Surname</button>
+              <button style="margin:5px;" class="btn btn-danger" (click)="deletePerson(person.id)">Delete</button>
+              <button class="btn btn-warning" (click)="updatePerson(person)">Update</button>
+            </div>
+          </li>
+        </div>
+      </ul>
+    </div>
+    <div class="col-sm-4">
+      <p></p>
+    </div>
+
+  </div>
+</div>
