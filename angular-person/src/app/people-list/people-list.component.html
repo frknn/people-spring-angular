@@ -4,6 +4,8 @@
       <p> </p>
     </div>
     <div class="col-sm-4">
+      <br>
+      <input class="form-control" type="text" [formControl]="searchname" [(ngModel)]="name1" (keyup)="onKey()" placeholder="Search name"/>
       <form class="formclass" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <p>
