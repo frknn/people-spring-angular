@@ -25,10 +25,6 @@ export class ApiService {
      return this.http.post<Person>(this.url,person1);
    }
 
-   getSurname(id: number){
-     return this.http.get<Person>(this.url+id.toString());
-   }
-
    deletePerson(id: number){
      return this.http.delete<any>(this.url+id.toString());
    }

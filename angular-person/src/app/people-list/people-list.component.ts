@@ -75,28 +75,6 @@ export class PeopleListComponent implements OnInit {
   }
 
 
-  public getSurname(id: number) {
-    this.apiService.getSurname(id).subscribe(
-      res => {
-        this.person = res;
-        var elem1 = document.getElementById(this.person.id.toString());
-        var btnSurname = document.getElementById("btn " + this.person.id.toString());
-        if (this.flag === true) {
-          elem1.innerHTML += " " + this.person.surname;
-          btnSurname.innerText = "Hide";
-          this.flag = !this.flag;
-        } else {
-          elem1.innerHTML = this.person.name;
-          btnSurname.innerText = "Surname";
-          this.flag = !this.flag;
-        }
-      },
-      err => {
-        alert("Error!");
-      }
-    );
-  }
-
   public deletePerson(id: number) {
     this.apiService.deletePerson(id).subscribe(
       res => {
