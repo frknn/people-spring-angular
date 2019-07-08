@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Person } from '../people-list/model/person';
+import { Course } from '../people-list/model/course';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +9,7 @@ import { Person } from '../people-list/model/person';
 export class ApiService {
   
   persons: Person[] = [];
+  courses: Course[] = [];
   person: Person;
   flag: boolean = true;
 
@@ -33,5 +35,8 @@ export class ApiService {
      return this.http.put<any>(this.url,updatedPerson);
    }
 
+   getCourses(id: number){
+     return this.http.get<Course[]>(this.url + id.toString() + '/courses');
+   }
 
 }

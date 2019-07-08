@@ -2,7 +2,7 @@ import { Component, OnInit, Injectable } from '@angular/core';
 import { Person } from './model/person';
 import { ApiService } from '../shared/api.service';
 import { FormControl, FormGroup } from '@angular/forms';
-
+import { Course } from './model/course';
 
 @Component({
   selector: 'app-people-list',
@@ -13,9 +13,10 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class PeopleListComponent implements OnInit {
 
   persons: Person[] = [];
+  courses: Course[] = [];
   person: Person;
   flag: boolean = true;
-  searchname=new FormControl('');
+  searchname = new FormControl('');
   name1: string;
   searched: Person[] = [];
   profileForm = new FormGroup({
@@ -40,12 +41,12 @@ export class PeopleListComponent implements OnInit {
     );
   }
 
-  public onKey(){
+  public onKey() {
     this.apiService.getAllPersons().subscribe(
       res => {
         this.persons = res;
         this.searched = this.persons.filter(person => {
-          if(person.name.includes(this.name1) && this.searched.indexOf(person) === -1){
+          if (person.name.includes(this.name1) && this.searched.indexOf(person) === -1) {
             return person;
           }
         })
@@ -71,6 +72,16 @@ export class PeopleListComponent implements OnInit {
       err => {
         alert(err);
       }
+    );
+  }
+
+  public getCourses(id) {
+    this.apiService.getCourses(id).subscribe(
+      res => {
+      this.courses = res;
+        console.log(this.courses);
+      },
+      err => { alert(err) }
     );
   }
 

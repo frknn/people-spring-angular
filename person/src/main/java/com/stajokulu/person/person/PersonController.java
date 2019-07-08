@@ -1,5 +1,6 @@
 package com.stajokulu.person.person;
 
+import com.stajokulu.person.person.course.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +13,8 @@ public class PersonController {
 
     @Autowired
     PersonService personService;
+    @Autowired
+    CourseService courseService;
 
     @GetMapping("/hello")
     public String sayHello(){
@@ -45,6 +48,10 @@ public class PersonController {
 
     @DeleteMapping("/person/{id}")
     public void deletePerson(@PathVariable Long id){
+
+        courseService.deleteAllCourses();
         personService.deletePerson(id);
+
     }
+
 }

@@ -5,7 +5,8 @@
     </div>
     <div class="col-sm-4">
       <br>
-      <input class="form-control" type="text" [formControl]="searchname" [(ngModel)]="name1" (keyup)="onKey()" placeholder="Search name"/>
+      <input style="margin-bottom: 10px" class="form-control" type="text" [formControl]="searchname" [(ngModel)]="name1"
+        (keyup)="onKey()" placeholder="Search name" />
       <form class="formclass" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <p>
@@ -21,8 +22,8 @@
         </div>
         <p> </p>
         <button class="btn btn-success" type="submit" [disabled]="!profileForm.valid">Submit</button>
-
       </form>
+
     </div>
     <div class="col-sm-4">
       <p> </p>
@@ -31,24 +32,27 @@
 
   <div style="margin: 10px;" class="row">
     <div class="col-sm-4">
-      <p></p>
     </div>
     <div class="col-sm-4">
-      <h2 style="text-align: center; margin-top:25px">People</h2>
-      <ul class="list-group">
-        <div *ngFor="let person of persons">
-          <li class="list-group-item">
-            <div style="text-align: center">
-              <button id="{{person.id}}" style="border: none; background:none;" (click)="updateFields(person)">
-                {{person.name}}
-              </button>
-              <p></p>
-              <button style="margin:5px;" class="btn btn-danger" (click)="deletePerson(person.id)">Delete</button>
-              <button class="btn btn-warning" (click)="updatePerson(person)">Update</button>
-            </div>
-          </li>
-        </div>
-      </ul>
+      <div class="card">
+        <h3 style="text-align: center; margin-top:25px">People</h3>
+        <ul class="list-group">
+          <div *ngFor="let person of persons">
+            <li class="list-group-item">
+              <div style="text-align: center">
+                <button id="{{person.id}}" style="border: none; background:none;" (click)="updateFields(person)">
+                  {{person.name}} {{person.surname}}
+                </button>
+                <br><br>
+                <button class="btn btn-primary" (click)="getCourses(person.id)">Courses</button>
+                <button style="margin:5px;" class="btn btn-danger" (click)="deletePerson(person.id)">Delete</button>
+                <button class="btn btn-warning" (click)="updatePerson(person)">Update</button>
+              </div>
+            </li>
+          </div>
+        </ul>
+      </div>
+
     </div>
     <div class="col-sm-4">
       <p></p>
