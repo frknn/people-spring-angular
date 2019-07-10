@@ -38,5 +38,9 @@ export class ApiService {
    getCourses(id: number){
      return this.http.get<Course[]>(this.url + id.toString() + '/courses');
    }
+   
+   deleteCourse(personId:number, courseId:number){
+     return this.http.delete<any>(this.url + personId.toString() + '/courses/' + courseId.toString());
+   }
 
 }

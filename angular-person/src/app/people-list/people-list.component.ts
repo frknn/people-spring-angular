@@ -24,6 +24,7 @@ export class PeopleListComponent implements OnInit {
     lastName: new FormControl(''),
   });
 
+
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
@@ -78,11 +79,23 @@ export class PeopleListComponent implements OnInit {
   public getCourses(id) {
     this.apiService.getCourses(id).subscribe(
       res => {
-      this.courses = res;
+        this.courses = res;
         console.log(this.courses);
       },
       err => { alert(err) }
     );
+  }
+
+  public deleteCourse(personId: number, courseId: number) {
+    this.apiService.deleteCourse(personId, courseId).subscribe(
+      res => {
+        this.courses = res,
+          this.getCourses(personId);
+      },
+      err => {
+        console.log(err);
+      }
+    )
   }
 
 
