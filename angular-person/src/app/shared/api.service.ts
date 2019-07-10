@@ -43,4 +43,12 @@ export class ApiService {
      return this.http.delete<any>(this.url + personId.toString() + '/courses/' + courseId.toString());
    }
 
+   getPersonById(id){
+     return this.http.get<Person>(this.url + id.toString());
+   }
+
+   addCourse(id,course){
+    return this.http.post<Course>(this.url + id.toString() + '/courses',course);
+  }
+
 }

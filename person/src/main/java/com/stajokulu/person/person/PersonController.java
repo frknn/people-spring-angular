@@ -48,10 +48,7 @@ public class PersonController {
 
     @DeleteMapping("/person/{id}")
     public void deletePerson(@PathVariable Long id){
-
-        courseService.deleteAllCourses();
         personService.deletePerson(id);
-
     }
 
 }

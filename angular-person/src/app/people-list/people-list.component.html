@@ -7,7 +7,7 @@
       <br>
       <input style="margin-bottom: 10px" class="form-control" type="text" [formControl]="searchname" [(ngModel)]="name1"
         (keyup)="onKey()" placeholder="Search name" />
-      <form class="formclass" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+      <form class="myformclass" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <p>
             First Name
@@ -45,34 +45,7 @@
               <br><br>
               <button type="button" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-primary"
                 (click)="getCourses(person.id)">Courses</button>
-              <!-- Modal -->
-              <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLongTitle">{{person.name | titlecase}}'s Courses</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                      <ul class="list-group">
-                        <div *ngFor="let course of courses">
-                          <li class="list-group-item">
-                            {{course.name}} <button class="btn btn-danger" style="text-align: left"
-                              (click)="deleteCourse(person.id,course.id)">X</button>
-                          </li>
-                        </div>
-                      </ul>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+
               <button style="margin:5px;" class="btn btn-danger" (click)="deletePerson(person.id)">Delete</button>
               <button class="btn btn-warning" (click)="updatePerson(person)">Update</button>
             </div>
@@ -84,5 +57,40 @@
       <p></p>
     </div>
 
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">{{personname | titlecase}}'s Courses</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="input-group">
+          <input class="form-control" type="text" [formControl]="courseToAddForm" placeholder="Add Course...">
+          <div class="input-group-append">
+            <button class="btn btn-success" (click)="addCourse(person.id)"><i class="fa fa-plus"></i></button>
+          </div>
+        </div>
+        <ul class="list-group">
+          <div *ngFor="let course of courses">
+            <li class="list-group-item">
+              {{course.name}} <button class="deletebtn" (click)="deleteCourse(person.id,course.id)"><i
+                  class="fa fa-trash"></i></button>
+            </li>
+          </div>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
   </div>
 </div>

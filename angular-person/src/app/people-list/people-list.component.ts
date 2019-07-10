@@ -13,9 +13,13 @@ import { Course } from './model/course';
 export class PeopleListComponent implements OnInit {
 
   persons: Person[] = [];
+  course: Course;
+  personname: string;
   courses: Course[] = [];
   person: Person;
   flag: boolean = true;
+  courseToAddForm = new FormControl('');
+  courseToAdd: string;
   searchname = new FormControl('');
   name1: string;
   searched: Person[] = [];
@@ -76,7 +80,24 @@ export class PeopleListComponent implements OnInit {
     );
   }
 
+  public addCourse(id){
+    this.course = {
+      id: Math.floor(Math.random() * 1000) + 3,
+      name: this.courseToAddForm.value.toString()
+    }
+    this.apiService.addCourse(id,this.course).subscribe(
+      res=>{
+        this.course = res;
+        this.getCourses(id);
+      },
+      err => {
+        console.log(err)
+      }
+    )
+  }
+
   public getCourses(id) {
+    this.getPersonById(id);
     this.apiService.getCourses(id).subscribe(
       res => {
         this.courses = res;
@@ -84,6 +105,15 @@ export class PeopleListComponent implements OnInit {
       },
       err => { alert(err) }
     );
+  }
+
+  public getPersonById(id){
+    this.apiService.getPersonById(id).subscribe(
+      res => {
+        this.person = res;
+        this.personname = this.person.name;
+      }
+    )
   }
 
   public deleteCourse(personId: number, courseId: number) {

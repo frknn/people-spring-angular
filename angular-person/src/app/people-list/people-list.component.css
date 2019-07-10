@@ -1,4 +1,4 @@
-.formclass {
+.myformclass {
     text-align: center;
     margin-top: 50px;
 }
@@ -14,4 +14,24 @@
     animation-name: example;
     animation-duration: 0.5s;
 }
+
+.deletebtn {
+    background-color: rgb(236, 59, 59); /* red background */
+    border: none; /* Remove borders */
+    border-radius: 7px;
+    color: white; /* White text */
+    font-size: 16px; /* Set a font size */
+    cursor: pointer;
+    float:right;
+  }
+
+  .addbtn {
+    background-color: rgb(43, 255, 0); /* red background */
+    border: none; /* Remove borders */
+    border-radius: 7px;
+    color: white; /* White text */
+    font-size: 16px; /* Set a font size */
+    cursor: pointer;
+    float:right;
+  }
 
